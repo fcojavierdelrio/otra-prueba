@@ -82,6 +82,7 @@
             &copy; 2024 Mercadona Logística
         </footer>
     </div>
+    <script src="https://unpkg.com/browse/@supabase/supabase-js@2.45.3/"></script>
     <script>
         // Referencias a los elementos del formulario
         const form = document.getElementById('multiStepForm');
@@ -118,6 +119,7 @@
                 }
 
                 // Mostrar los datos ingresados
+                insertRow({PALETAS:33, MATRICULA: '1234ABC'})
                 alert(`Número de paletas: ${numeroPaletasInput.value}\nMatrícula del camión: ${matriculaCamion}`);
 
                 // Reiniciar el formulario
@@ -129,6 +131,18 @@
                 formTitle.textContent = "Ingrese el Número de Paletas";
             }
         });
+        const supabaseUrl = 'https://ilzowclnsvabbpwnwkrt.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlsem93Y2xuc3ZhYmJwd253a3J0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUzMTI2NjQsImV4cCI6MjA1MDg4ODY2NH0.KrPg77Bavax4DgHCpDou4L9XAB41II9_ywNcjy8w6ao'
+        const supabase = createClient(supabaseUrl, supabaseKey)
+        
+        async function insertRow(data) {
+            return await supabase
+              .from('PALETAS')
+              .insert([
+                { PALETAS: data.PALETAS, MATRICULA: data.MATRICULA },
+          ])
+              .select()
+        }
     </script>
 </body>
 </html>
