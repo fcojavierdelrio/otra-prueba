@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Paletas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 300px; /* Ajuste del ancho a 300px */
+            height: auto; /* Mantener proporción de altura */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4facfe;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #00aaff;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logotipo -->
+        <div class="logo">
+            <img src="mercadona-logo.png" alt="Logotipo de Mercadona">
+        </div>
+        <h1 id="formTitle">Ingrese el Número de Paletas</h1>
+        <form id="multiStepForm">
+            <input type="number" id="numeroPaletas" placeholder="Escriba el número de paletas" required>
+            <input type="text" id="matriculaCamion" placeholder="Escriba la matrícula del camión" style="display: none;">
+            <button type="submit">Siguiente</button>
+        </form>
+        <footer>
+            &copy; 2024 Mercadona Logística
+        </footer>
+    </div>
+    <script>
+        // Referencias a los elementos del formulario
+        const form = document.getElementById('multiStepForm');
+        const numeroPaletasInput = document.getElementById('numeroPaletas');
+        const matriculaCamionInput = document.getElementById('matriculaCamion');
+        const formTitle = document.getElementById('formTitle');
+        let currentStep = 1; // Controla el paso actual del formulario
+
+        // Manejador del evento submit
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevenir la recarga de la página
+
+            if (currentStep === 1) {
+                // Validar el número de paletas
+                const numeroPaletas = numeroPaletasInput.value.trim();
+                if (numeroPaletas === "" || parseInt(numeroPaletas) <= 0) {
+                    alert("Por favor, ingrese un número válido de paletas.");
+                    return;
+                }
+
+                // Cambiar al paso 2
+                currentStep = 2;
+                numeroPaletasInput.style.display = "none"; // Ocultar campo de paletas
+                matriculaCamionInput.style.display = "block"; // Mostrar campo de matrícula
+                matriculaCamionInput.setAttribute('required', true); // Añadir el atributo required dinámicamente
+                formTitle.textContent = "Ingrese la Matrícula del Camión";
+                matriculaCamionInput.focus();
+            } else if (currentStep === 2) {
+                // Validar la matrícula del camión
+                const matriculaCamion = matriculaCamionInput.value.trim();
+                if (matriculaCamion === "") {
+                    alert("Por favor, ingrese una matrícula válida.");
+                    return;
+                }
+
+                // Mostrar los datos ingresados
+                alert(`Número de paletas: ${numeroPaletasInput.value}\nMatrícula del camión: ${matriculaCamion}`);
+
+                // Reiniciar el formulario
+                form.reset();
+                currentStep = 1;
+                matriculaCamionInput.style.display = "none"; // Ocultar campo de matrícula
+                matriculaCamionInput.removeAttribute('required'); // Eliminar el atributo required dinámicamente
+                numeroPaletasInput.style.display = "block"; // Mostrar campo de paletas
+                formTitle.textContent = "Ingrese el Número de Paletas";
+            }
+        });
+    </script>
+</body>
+</html>
