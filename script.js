@@ -27,7 +27,10 @@ form.addEventListener('submit', function (e) {
             return;
         }
 
-        insertRow({ PALETAS:33, MATRICULA: '1234ABC' });
+        insertRow({
+            PALETAS: numeroPaletasInput.value,
+            MATRICULA: matriculaCamion
+        });
         alert(`Número de paletas: ${numeroPaletasInput.value}\nMatrícula del camión: ${matriculaCamion}`);
 
         form.reset();
