@@ -9,7 +9,7 @@ async function insertRow(row) {
     const { data, error } = await connection
       .from('PALETAS')
       .insert([
-        { PALETAS: data.PALETAS, MATRICULA: data.MATRICULA },
+        { PALETAS: row.PALETAS, MATRICULA: row.MATRICULA },
         ])
       .select();
     console.log("DATA: ", data);
