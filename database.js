@@ -6,14 +6,13 @@ console.log(connection);
 
 function insertRow(data) {
     console.log(data);
-    /* 
-    return supabase
+    
+    return connection
       .from('PALETAS')
       .insert([
         { PALETAS: data.PALETAS, MATRICULA: data.MATRICULA },
-  ])
+        ])
       .select();
-    */
 }
 
 window.insertRow = insertRow;
