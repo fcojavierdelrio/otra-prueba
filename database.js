@@ -8,12 +8,12 @@ async function initializeSupabase() {
 }
 
 async function insertRow(data) {
-    return await supabase
+    return supabase
       .from('PALETAS')
       .insert([
         { PALETAS: data.PALETAS, MATRICULA: data.MATRICULA },
   ])
-      .select()
+      .select();
 }
 
 window.insertRow = insertRow;
