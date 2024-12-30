@@ -12,19 +12,7 @@ function insertRow(row) {
         "Content-Type": "application/json",
         "apikey": apiKey
       },
-      body: JSON.stringify(payload),
-      mode: "no-cors"
+      body: JSON.stringify(payload)
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al insertar la fila: ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log("Datos insertados:", data);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
+      .then(response => console.log(response));
   }
