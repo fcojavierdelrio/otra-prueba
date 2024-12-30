@@ -4,15 +4,18 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const connection = createClient(supabaseUrl, supabaseKey);
 console.log(connection);
 
-function insertRow(data) {
-    console.log(data);
-    
-    return connection
+async function insertRow(row) {
+    console.log(row);
+    const { data, error } = await connection
       .from('PALETAS')
       .insert([
         { PALETAS: data.PALETAS, MATRICULA: data.MATRICULA },
         ])
       .select();
+    console.log("DATA: ", data);
+    console.log("ERROR: ", error);
 }
 
 window.insertRow = insertRow;
+
+insertRow({ PALETAS:33, MATRICULA: '1234ABC' })
