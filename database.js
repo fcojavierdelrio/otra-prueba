@@ -9,10 +9,12 @@ function insertRow(row) {
     fetch(url, {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "https://fcojavierdelrio.github.io"
         "Content-Type": "application/json",
         "apikey": apiKey
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      mode: "no-cors"
     })
       .then(response => {
         if (!response.ok) {
