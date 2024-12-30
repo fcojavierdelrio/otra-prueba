@@ -14,5 +14,5 @@ function insertRow(row) {
       },
       body: JSON.stringify(payload)
     })
-      .then(response => console.log(response));
+      .then(response => console.log(response.json()));
   }
