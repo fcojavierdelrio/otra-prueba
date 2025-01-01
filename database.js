@@ -4,8 +4,8 @@ const connection = createClient('https://ilzowclnsvabbpwnwkrt.supabase.co', 'eyJ
 async function insertRow(row) {
   const response = await connection
     .from('PALETAS')
-    .insert([{ PALETAS: row.paletas, MATRICULA: row.matricula }])
-    .select();
+    .insert([{ PALETAS: row.PALETAS, MATRICULA: row.MATRICULA }])
+    .select('*');
   console.log(response);
 }
 
