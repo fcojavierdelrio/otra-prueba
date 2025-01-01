@@ -31,7 +31,6 @@ form.addEventListener('submit', function (e) {
             PALETAS: numeroPaletasInput.value,
             MATRICULA: matriculaCamion
         });
-        alert(`Número de paletas: ${numeroPaletasInput.value}\nMatrícula del camión: ${matriculaCamion}`);
 
         form.reset();
         currentStep = 1;
